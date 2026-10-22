@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# leakfix-src — primary operation: leakfix crash-log collector + fixer CLI.
+# This clone is currently a SOURCE-STUB: the `leakfix/` package only contains
+# `crash.log` (the collect/log dir) — the modules referenced by
+# leakfix.egg-info/SOURCES.txt (cli.py, classifier.py, fixer.py, ...) were never
+# committed. There is no runnable CLI yet.
+#
+# Until the source lands, bin/run reports the stub state clearly; bin/check
+# verifies the crash-log sink is present and writable.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+if [ "${1:-}" = "check" ]; then
+  exec ./bin/check
+fi
+
+echo "leakfix-src: repo is a source-stub (only leakfix/crash.log + build metadata committed)."
+echo "  The leakfix CLI modules (leakfix/cli.py, fixer.py, classifier.py, ...) are not"
+echo "  materialized here. Nothing to run yet. Gate: bin/check"
+exit 2
